@@ -289,11 +289,13 @@ public class Contract extends User {
                     tmpContract.setContractType(contractType);
                     if (tmpContract.getContractType() == 1) {
                         //contract is landline
-                        createLandlineContract(tmpContract);
+                        LandlineContract landlineContract = new LandlineContract(contractArrayList, userArrayList);
+                        tmpContract = landlineContract.createLandlineContract(tmpContract);
                         break;
                     } else if (tmpContract.getContractType() == 2) {
                         //contract is mobile
-                        createMobileContract(tmpContract);
+                        MobileContract mobileContract = new MobileContract(contractArrayList, userArrayList);
+                        tmpContract = mobileContract.createMobileContract(tmpContract);
                         break;
                     }
                 }
@@ -430,115 +432,7 @@ public class Contract extends User {
         contractArrayList.add(tmpContract);
     }
 
-    /**
-     * creates mobile contract for the user and adds it to the contract array list
-     * @param tmpContract the contract that will be used to store temporarily all the info for the mobile contract
-     */
-    private void createMobileContract(Contract tmpContract) {
-        Scanner input = new Scanner(System.in);
-
-        //get phone number and check if it is valid
-        System.out.println("Please enter your phone number: ");
-        while (true) {
-            if (input.hasNextLine()) {
-                String phoneNumber = input.nextLine();
-                if (checkMobileNumber(phoneNumber)) {
-                    tmpContract.setPhoneNumber(phoneNumber);
-                    break;
-                }
-                System.out.println("Phone number must start with 6");
-            }
-            System.out.println("Wrong input!");
-        }
-
-        tmpContract.setMonthlyCost(100); //standard cost
-
-        //get number of free GBs
-        System.out.println("Please enter the number of free GBs that you would like to receive each month: ");
-        while (true) {
-            if (input.hasNextInt()) {
-                int freeGB = input.nextInt();
-                if (freeGB >= 0) {
-                    tmpContract.setFreeGB(freeGB);
-                    break;
-                }
-                System.out.println("Number of GBs must be zero or more");
-            }
-            System.out.println("Wrong input! Please enter a number");
-        }
-
-        //get number of free SMS
-        System.out.println("Please enter the number of free SMS that you would like to receive each month: ");
-        while (true) {
-            if (input.hasNextInt()) {
-                int freeSMS = input.nextInt();
-                if (freeSMS >= 0) {
-                    tmpContract.setFreeSMS(freeSMS);
-                    break;
-                }
-                System.out.println("Number of SMS must be zero or more");
-            }
-            System.out.println("Wrong input! Please enter a number");
-        }
-    }
-
-    /**
-     * creates a new landline contract for the user and adds it to the contract array list
-     * @param tmpContract is used to store the contract info temporarily
-     */
-    private void createLandlineContract(Contract tmpContract) {
-        Scanner input = new Scanner(System.in);
-
-        //get phone number
-        System.out.println("Please enter your phone number: ");
-        while (true) {
-            if (input.hasNextLine()) {
-                String phoneNumber = input.nextLine();
-                if (checkNumber(phoneNumber)) {
-                    tmpContract.setPhoneNumber(phoneNumber);
-                    break;
-                }
-                System.out.println("Phone number must start with 2");
-            }
-            System.out.println("Wrong input!");
-        }
-
-        //if user wants internet get desired speed
-        System.out.println("Would you like to have internet? \n1. Yes \n2. No");
-        while (true) {
-            if (input.hasNextInt()) {
-                int tmp = input.nextInt();
-                if (tmp == 1) {
-                    System.out.println("What is your preferred internet speed? \n1. ADSL \n2. VDSL");
-                    if (input.hasNextInt()) {
-                        int internetSpeed = input.nextInt();
-                        if (internetSpeed == 1 || internetSpeed == 2) {
-                            tmpContract.setInternetSpeed(internetSpeed);
-                            //set monthly cost depending on the type of internet speed
-                            if (internetSpeed == 1) {
-                                //ADSL -> 50
-                                tmpContract.setMonthlyCost(tmpContract.getMonthlyCost() + 50);
-                            } else {
-                                //VDSL -> 100
-                                tmpContract.setMonthlyCost(tmpContract.getMonthlyCost() + 100);
-                            }
-                            break;
-                        }
-                        System.out.println("Please enter a corresponding number");
-                    }
-                    System.out.println("Wrong input! Please enter a corresponding number");
-                } else if (tmp == 2) {
-                    break;
-                }
-                System.out.println("Wrong input! Please enter a corresponding number");
-            }
-            System.out.println("Wrong input! Please enter a corresponding number");
-        }
-    }
-
-    //print contract details
-
-    /**
+     /**
      * print contract details such as: user code, contract code,
      * phone number, monthly cost, discount, cost after discount
      * user afm, starting date, contract duration, billing method
@@ -601,26 +495,22 @@ public class Contract extends User {
      * @param userInput the phone number entered by the user
      * @return true if the phone number starts with 2 else false
      */
-    private boolean checkNumber(String userInput) {
+    protected boolean checkNumber(String userInput) {
         Pattern pattern = Pattern.compile("^2");
         Matcher matcher = pattern.matcher(userInput);
         return matcher.find();
     }
-
-    //1st digit must be 6
 
     /**
      * checks if the phone number entered by the user starts with 6
      * @param userInput the phone number entered by the user
      * @return true if the phone number starts with 6 else false
      */
-    private boolean checkMobileNumber(String userInput) {
+    protected boolean checkMobileNumber(String userInput) {
         Pattern pattern = Pattern.compile("^6");
         Matcher matcher = pattern.matcher(userInput);
         return matcher.find();
     }
-
-    //delete contract
 
     /**
      * prints all the contracts associated with the user's afm
