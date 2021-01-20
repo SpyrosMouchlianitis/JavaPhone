@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Contract extends User {
 
-    private ArrayList<Contract> contractArrayList;
+    private final ArrayList<Contract> contractArrayList;
     private int freeCallMinutes;
     private int contractDuration; //12 -> option 1 or 24 months -> option 2
     private int monthlyCost;
@@ -30,118 +30,253 @@ public class Contract extends User {
         this.contractArrayList = contractArrayList;
     }
 
+    /**
+     * sets the user's afm
+     * @param userAfm user's afm
+     */
     public void setUserAfm(int userAfm) {
         this.userAfm = userAfm;
     }
 
+    /**
+     * gets user's afm
+     * @return user's afm
+     */
     public int getUserAfm() {
         return userAfm;
     }
 
+    /**
+     * gets the number of free GBs
+     * @return the number of free GBs
+     */
     public int getFreeGB() {
         return freeGB;
     }
 
+    /**
+     * sets the number of free GBs
+     * @param freeGB
+     */
     public void setFreeGB(int freeGB) {
         this.freeGB = freeGB;
     }
 
+    /**
+     * gets the number of free sms
+     * @return the number of free sms
+     */
     public int getFreeSMS() {
         return freeSMS;
     }
 
+    /**
+     * sets the nubmer of free sms
+     * @param freeSMS
+     */
     public void setFreeSMS(int freeSMS) {
         this.freeSMS = freeSMS;
     }
 
+    /**
+     * sets the payment method
+     * 1 -> credit card
+     * 2 -> cash
+     * 3 -> standing order in bank account
+     * @param paymentMethod integer from 1 to 3 corresponding to the payment method
+     */
     public void setPaymentMethod(int paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
+    /**
+     * gets the payment method
+     * @return integer from 1 to 3 corresponding to the payment method
+     */
     public int getPaymentMethod() {
         return paymentMethod;
     }
 
+    /**
+     * sets the number of free call minutes
+     * @param freeCallMinutes the number of free call minutes
+     */
     public void setFreeCallMinutes(int freeCallMinutes) {
         this.freeCallMinutes = freeCallMinutes;
     }
 
+    /**
+     * gets the number of free call minutes
+     * @return the number of free call minutes
+     */
     public int getFreeCallMinutes() {
         return freeCallMinutes;
     }
 
+    /**
+     * sets the duration of the contract
+     * 1 -> 12 months
+     * 2 -> 24 months
+     * @param contractDuration integer 1 or 2 corresponding to the duration of the contract
+     */
     public void setContractDuration(int contractDuration) {
         this.contractDuration = contractDuration;
     }
 
+    /**
+     * gets the duration of the contract
+     * 1 -> 12 months
+     * 2 -> 24 months
+     * @return integer 1 or 2 corresponding to the duration of the contract
+     */
     public int getContractDuration() {
         return contractDuration;
     }
 
+    /**
+     * sets the monthly cost of the contract
+     * @param monthlyCost the monthly cost of the contract
+     */
     public void setMonthlyCost(int monthlyCost) {
         this.monthlyCost = monthlyCost;
     }
 
+    /**
+     * gets the monthly cost of the contract
+     * @return the monthly cost of the contract
+     */
     public int getMonthlyCost() {
         return monthlyCost;
     }
 
+    /**
+     * sets the billing method
+     * 1 -> printed
+     * 2 -> online bill
+     * @param billingMethod integer 1 or 2 corresponding to the billing method
+     */
     public void setBillingMethod(int billingMethod) {
         this.billingMethod = billingMethod;
     }
 
+    /**
+     * gets the billing method
+     * 1 -> printed bill
+     * 2 -> online bill
+     * @return integer 1 or 2 corresponding to the billing method
+     */
     public int getBillingMethod() {
         return billingMethod;
     }
 
+    /**
+     * sets the contract type
+     * 1 -> landline
+     * 2 -> mobile
+     * @param contractType integer 1 or 2 corresponding to the type of the contract
+     */
     public void setContractType(int contractType) {
         this.contractType = contractType;
     }
 
+    /**
+     * gets the contract type
+     * 1 -> landline
+     * 2 -> mobile
+     * @return integer 1 or 2 corresponding to the contract type
+     */
     public int getContractType() {
         return contractType;
     }
 
+    /**
+     * sets the contract code, a random positive integer up to 999
+     * @param contractCode the contract code
+     */
     public void setContractCode(int contractCode) {
         this.contractCode = contractCode;
     }
 
+    /**
+     * gets the contract code
+     * @return the contract code
+     */
     public int getContractCode() {
         return contractCode;
     }
 
+    /**
+     * sets the contract's discount
+     * @param discount the amount of the discount (i.e 15% -> 0.15)
+     */
     public void setDiscount(double discount) {
         this.discount = discount;
     }
 
+    /**
+     * gets the amount of the discount
+     * @return the amount of the discount
+     */
     public double getDiscount() {
         return discount;
     }
 
+    /**
+     * sets the phone number entered by the user
+     * @param phoneNumber the phone number
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * gets the phone number entered by the user
+     * @return the phone number entered by the user
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * sets the contract's starting date
+     * @param startingDate the starting date of the contract
+     */
     public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
+    /**
+     * gets the starting date of the contract
+     * @return the starting date of the contract
+     */
     public String getStartingDate() {
         return startingDate;
     }
 
+    /**
+     * sets the contract's internet speed
+     * 1 -> ADSL
+     * 2 -> VDSL
+     * @param internetSpeed integer 1 or 2 corresponding to the internet speed of the contract
+     */
     public void setInternetSpeed(int internetSpeed) {
         this.internetSpeed = internetSpeed;
     }
 
+    /**
+     * gets the internet speed of the contract
+     * 1 -> ADSL
+     * 2 -> VDSL
+     * @return integer 1 or 2 corresponding to the internet speed of the contract
+     */
     public int getInternetSpeed() {
         return internetSpeed;
     }
 
+    /**
+     * create a new contract for the user
+     * @param tmpContract has the afm of the user and is used to create the contract
+     */
     public void createContract(Contract tmpContract) {
         Scanner input = new Scanner(System.in);
 
@@ -212,7 +347,7 @@ public class Contract extends User {
             if (input.hasNextInt()) {
                 int duration = input.nextInt();
                 if (duration == 1 || duration == 2) {
-                    tmpContract.setContractDuration(duration);
+                    tmpContract.setContractDuration(duration); //1->12 months, 2->24 months
                     break;
                 }
                 System.out.println("Please enter the corresponding number");
@@ -225,7 +360,7 @@ public class Contract extends User {
         while (true) {
             //we assume the user uses the aforementioned date format
             tmpContract.setStartingDate(input.next());
-            //check for overlapping
+            //check for overlapping -> cannot have two contracts with the same phone number at the same time
             if (checkForOverlapping()) {
                 System.out.println("Please enter another starting date or change the duration of your contract. (Contracts cannot have overlapping dates)");
             } else {
@@ -234,12 +369,13 @@ public class Contract extends User {
             }
         }
 
+
         //get billing method
         System.out.println("Please choose your billing method: \n1. Printed \n2. Online");
         while (true) {
             if (input.hasNextInt()) {
                 int billingMethod = input.nextInt();
-                if (billingMethod == 1 || billingMethod == 2) {
+                if (billingMethod == 1 || billingMethod == 2) { //1->printed bill, 2->online bill
                     tmpContract.setBillingMethod(billingMethod);
                     //if billing method is online user gets 2% discount
                     if (tmpContract.getBillingMethod() == 2) {
@@ -294,6 +430,10 @@ public class Contract extends User {
         contractArrayList.add(tmpContract);
     }
 
+    /**
+     * creates mobile contract for the user and adds it to the contract array list
+     * @param tmpContract the contract that will be used to store temporarily all the info for the mobile contract
+     */
     private void createMobileContract(Contract tmpContract) {
         Scanner input = new Scanner(System.in);
 
@@ -310,6 +450,8 @@ public class Contract extends User {
             }
             System.out.println("Wrong input!");
         }
+
+        tmpContract.setMonthlyCost(100); //standard cost
 
         //get number of free GBs
         System.out.println("Please enter the number of free GBs that you would like to receive each month: ");
@@ -340,6 +482,10 @@ public class Contract extends User {
         }
     }
 
+    /**
+     * creates a new landline contract for the user and adds it to the contract array list
+     * @param tmpContract is used to store the contract info temporarily
+     */
     private void createLandlineContract(Contract tmpContract) {
         Scanner input = new Scanner(System.in);
 
@@ -391,6 +537,16 @@ public class Contract extends User {
     }
 
     //print contract details
+
+    /**
+     * print contract details such as: user code, contract code,
+     * phone number, monthly cost, discount, cost after discount
+     * user afm, starting date, contract duration, billing method
+     * payment method, internet speed if the contract is landline
+     * number of free call minutes, number of free gbs and sms if the contract is mobile
+     * @param contractIndex index of the contract to print
+     * @param userIndex index of the user
+     */
     public void printContract(int contractIndex, int userIndex) {
         System.out.println("User code: " + userArrayList.get(userIndex).getUserCode());
         System.out.println("Contract Code: " + contractArrayList.get(contractIndex).getContractCode());
@@ -400,7 +556,7 @@ public class Contract extends User {
         double finalDiscount = contractArrayList.get(contractIndex).getMonthlyCost() * contractArrayList.get(contractIndex).getDiscount();
         double costAfterDiscount = contractArrayList.get(contractIndex).getMonthlyCost() - finalDiscount;
         System.out.println("Cost after discount: " + costAfterDiscount);
-        System.out.println("AFM: " + contractArrayList.get(contractIndex).getUserAfm());
+        System.out.println("AFM: " + userArrayList.get(userIndex).getAfm());
         System.out.println("Starting Date: " + contractArrayList.get(contractIndex).getStartingDate());
 
         if (contractArrayList.get(contractIndex).getContractDuration() == 1) {
@@ -440,7 +596,11 @@ public class Contract extends User {
         System.out.println("");
     }
 
-    //1st digit must be 2
+    /**
+     * checks if the phone number entered by the user starts with 2
+     * @param userInput the phone number entered by the user
+     * @return true if the phone number starts with 2 else false
+     */
     private boolean checkNumber(String userInput) {
         Pattern pattern = Pattern.compile("^2");
         Matcher matcher = pattern.matcher(userInput);
@@ -448,6 +608,12 @@ public class Contract extends User {
     }
 
     //1st digit must be 6
+
+    /**
+     * checks if the phone number entered by the user starts with 6
+     * @param userInput the phone number entered by the user
+     * @return true if the phone number starts with 6 else false
+     */
     private boolean checkMobileNumber(String userInput) {
         Pattern pattern = Pattern.compile("^6");
         Matcher matcher = pattern.matcher(userInput);
@@ -455,13 +621,19 @@ public class Contract extends User {
     }
 
     //delete contract
+
+    /**
+     * prints all the contracts associated with the user's afm
+     * the user selects which contract to delete
+     * deletes the contract selected
+     */
     public void deleteContract() {
 
         boolean found = false;
         int j = 1;
         int[] indexes = new int[contractArrayList.size() + 1]; //indexing starts from 1
-        int k = 1;
 
+        //finds and prints all the contracts associated with this afm
         for (int i = 0; i < contractArrayList.size(); i++) {
             if (contractArrayList.get(i).getUserAfm() == this.getUserAfm()) {
                 int userIndex = findUser(this.getUserAfm());
@@ -477,9 +649,10 @@ public class Contract extends User {
         if (found) {
             System.out.println("Please choose the contract that you would like to delete: ");
 
+            //gets the index of the contract to delete and deletes it
             Scanner input = new Scanner(System.in);
             while (true) {
-                if (input.hasNextInt()) {
+                if (input.hasNextInt()) { //check if the input is number
                     int indexToDelete = input.nextInt();
                     if (indexToDelete >= 0 && indexToDelete < indexes.length) {
                         contractArrayList.remove(indexes[indexToDelete]);
@@ -494,6 +667,12 @@ public class Contract extends User {
         }
     }
 
+    /**
+     * checks for overlapping dates in user's contracts
+     * when the user creates a new contract he/she enters the desired starting date for that contract
+     * this method checks if that date overlaps with another contract
+     * @return true if there overlapping else returns false
+     */
     private boolean checkForOverlapping() {
     //TODO find link to site that I used
         String date1 = getStartingDate();
@@ -509,7 +688,7 @@ public class Contract extends User {
         }
 
         if (!found) {
-            return false;
+            return false; //no contracts where found so there cannot be any overlapping dates
         }
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -545,6 +724,13 @@ public class Contract extends User {
         return false;
     }
 
+    /**
+     * print statistics for all the contracts such as:
+     * the minimum amount of free call minutes selected by the users
+     * the average amount of free call minutes selected by the users
+     * the maximum amount of free call minutes selected by the users
+     * etc
+     */
     public void printStatistics() {
         int minFreeCallMinutesLandline = maxFreeCallMinutes;
         int minFreeCallMinutesMobile = maxFreeCallMinutes;
@@ -646,10 +832,4 @@ public class Contract extends User {
         System.out.println("                            \t\tAverage free SMS: " + avgFreeSMS);
     }
 
-    /**
-     * this method sets the discount for the template users
-     * @param index represents the index of the user in the contract list
-     */
-    public void createTemplateDiscount(int index) {
-    }
 }
