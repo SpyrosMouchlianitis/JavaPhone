@@ -51,14 +51,13 @@ public class it21958 {
         if (index != -1) {
             //user exists
             tmpUser = userArrayList.get(index);
-            System.out.println("Welcome to JavaPhone!");
         } else {
             //user doesn't exist
             tmpUser.createUser(tmpUser);
             System.out.println("New user created");
             index = userArrayList.size() - 1;
-            System.out.println("Welcome to JavaPhone!");
         }
+        System.out.println("Welcome to JavaPhone!");
 
         while (true) {
 
@@ -79,7 +78,6 @@ public class it21958 {
                             newestContractIndex = i;
                         }
                     }
-                    System.out.println("index: " + newestContractIndex);
                     contractArrayList.get(index).printContract(newestContractIndex, index);
                     //base cost is 100 if VDSL +100 if ADSL +50
                     //GBs, SMS, CallMinutes are free
