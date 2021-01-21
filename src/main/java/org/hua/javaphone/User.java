@@ -210,7 +210,6 @@ public class User {
      * @return true if the ID is 9 characters long else returns false
      */
     private boolean checkIDNumber(String idNumber) {
-        System.out.println(idNumber);
         return idNumber.length() == 9;
     }
 
