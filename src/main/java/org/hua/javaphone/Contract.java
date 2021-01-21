@@ -3,12 +3,11 @@ package org.hua.javaphone;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Contract extends User {
 
-    private final ArrayList<Contract> contractArrayList;
+    protected final ArrayList<Contract> contractArrayList;
+    private int internetSpeed;
     private int freeCallMinutes;
     private int contractDuration; //12 -> option 1 or 24 months -> option 2
     private int monthlyCost;
@@ -19,7 +18,6 @@ public class Contract extends User {
     private double discount;
     private String phoneNumber;
     private String startingDate;
-    private int internetSpeed; //ADSL, VDSL
     private int freeGB;
     private int freeSMS;
     private int userAfm;
@@ -28,6 +26,26 @@ public class Contract extends User {
     public Contract(ArrayList<Contract> contractArrayList, ArrayList<User> userArrayList) {
         super(userArrayList); //get userArrayList into Contract class
         this.contractArrayList = contractArrayList;
+    }
+
+    /**
+     * sets the contract's internet speed
+     * 1 -> ADSL
+     * 2 -> VDSL
+     * @param internetSpeed integer 1 or 2 corresponding to the internet speed of the contract
+     */
+    public void setInternetSpeed(int internetSpeed) {
+        this.internetSpeed = internetSpeed;
+    }
+
+    /**
+     * gets the internet speed of the contract
+     * 1 -> ADSL
+     * 2 -> VDSL
+     * @return integer 1 or 2 corresponding to the internet speed of the contract
+     */
+    public int getInternetSpeed() {
+        return internetSpeed;
     }
 
     /**
@@ -56,7 +74,7 @@ public class Contract extends User {
 
     /**
      * sets the number of free GBs
-     * @param freeGB
+     * @param freeGB the number of free GBs
      */
     public void setFreeGB(int freeGB) {
         this.freeGB = freeGB;
@@ -72,7 +90,7 @@ public class Contract extends User {
 
     /**
      * sets the nubmer of free sms
-     * @param freeSMS
+     * @param freeSMS the number of free sms
      */
     public void setFreeSMS(int freeSMS) {
         this.freeSMS = freeSMS;
@@ -253,25 +271,7 @@ public class Contract extends User {
         return startingDate;
     }
 
-    /**
-     * sets the contract's internet speed
-     * 1 -> ADSL
-     * 2 -> VDSL
-     * @param internetSpeed integer 1 or 2 corresponding to the internet speed of the contract
-     */
-    public void setInternetSpeed(int internetSpeed) {
-        this.internetSpeed = internetSpeed;
-    }
 
-    /**
-     * gets the internet speed of the contract
-     * 1 -> ADSL
-     * 2 -> VDSL
-     * @return integer 1 or 2 corresponding to the internet speed of the contract
-     */
-    public int getInternetSpeed() {
-        return internetSpeed;
-    }
 
     /**
      * create a new contract for the user
@@ -412,6 +412,10 @@ public class Contract extends User {
 
         //discount based on user type(student, professional)
         int index = findUser(tmpContract.getUserAfm());
+        if (index == -1) {
+            System.out.println("fuck");
+            System.exit(1);
+        }
         double tmpDiscount;
         if (userArrayList.get(index).getUserType() == 1) {
             //student -> 15% discount
@@ -488,28 +492,6 @@ public class Contract extends User {
             System.out.println("Free SMS per month: " + contractArrayList.get(contractIndex).getFreeSMS());
         }
         System.out.println("");
-    }
-
-    /**
-     * checks if the phone number entered by the user starts with 2
-     * @param userInput the phone number entered by the user
-     * @return true if the phone number starts with 2 else false
-     */
-    protected boolean checkNumber(String userInput) {
-        Pattern pattern = Pattern.compile("^2");
-        Matcher matcher = pattern.matcher(userInput);
-        return matcher.find();
-    }
-
-    /**
-     * checks if the phone number entered by the user starts with 6
-     * @param userInput the phone number entered by the user
-     * @return true if the phone number starts with 6 else false
-     */
-    protected boolean checkMobileNumber(String userInput) {
-        Pattern pattern = Pattern.compile("^6");
-        Matcher matcher = pattern.matcher(userInput);
-        return matcher.find();
     }
 
     /**
