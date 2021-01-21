@@ -2,6 +2,8 @@ package org.hua.javaphone;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LandlineContract extends Contract {
 
@@ -65,4 +67,14 @@ public class LandlineContract extends Contract {
         return tmpContract;
     }
 
+    /**
+     * checks if the phone number entered by the user starts with 2
+     * @param userInput the phone number entered by the user
+     * @return true if the phone number starts with 2 else false
+     */
+    private boolean checkNumber(String userInput) {
+        Pattern pattern = Pattern.compile("^2");
+        Matcher matcher = pattern.matcher(userInput);
+        return matcher.find();
+    }
 }
